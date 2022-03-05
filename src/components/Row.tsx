@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Cell } from './Cell';
 
 interface RowProps {
@@ -19,11 +20,11 @@ export const Row: React.FC<RowProps> = ({
 }) => {
   let counter: number = 0;
 
-  const rowCallback = (inPlace: boolean) => {
+  const rowCallback = (inPlace: boolean, index: number) => {
     counter = inPlace ? counter + 1 : counter;
-    console.log(counter);
-
-    mainCall(counter);
+    if (index === 4) {
+      mainCall(counter);
+    }
   };
 
   return (

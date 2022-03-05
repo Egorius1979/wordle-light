@@ -6,7 +6,7 @@ interface CellProps {
   word: string;
   check: boolean;
   index: number;
-  cb: (inPlace: boolean) => void;
+  cb: (inPlace: boolean, index: number) => void;
 }
 
 export const Cell: React.FC<CellProps> = ({
@@ -30,7 +30,7 @@ export const Cell: React.FC<CellProps> = ({
           : 'grey'
       );
       // if (!index) {
-      cb(word[index] === value);
+      cb(word[index] === value, index);
       // }
     }
   }, [check, row]);
