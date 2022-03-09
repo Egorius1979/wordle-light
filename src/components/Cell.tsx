@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface CellProps {
   row: number;
@@ -6,7 +6,9 @@ interface CellProps {
   word: string;
   check: boolean;
   index: number;
+  cellInFocus: number;
   cb: (inPlace: boolean, index: number) => void;
+  cb1: () => void;
 }
 
 export const Cell: React.FC<CellProps> = ({
@@ -15,10 +17,13 @@ export const Cell: React.FC<CellProps> = ({
   word,
   check,
   index,
+  cellInFocus,
   cb,
+  cb1,
 }) => {
   const [value, setValue] = useState<string>('');
   const [bgColor, setBgColor] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (check && row === currentRow) {
@@ -31,7 +36,19 @@ export const Cell: React.FC<CellProps> = ({
       );
       cb(word[index] === value, index);
     }
-  }, [check, row]);
+  }, [check, row, currentRow, word, index]);
+
+  useEffect(() => {
+    if (value) {
+      cb1();
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (cellInFocus === index || check) {
+      return inputRef?.current?.focus();
+    }
+  }, [cellInFocus, index, check]);
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < 2) {
@@ -48,6 +65,7 @@ export const Cell: React.FC<CellProps> = ({
       disabled={row !== currentRow}
       value={value}
       onChange={(e) => changeValue(e)}
+      ref={inputRef}
     />
   );
 };

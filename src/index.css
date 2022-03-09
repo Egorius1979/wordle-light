@@ -41,6 +41,9 @@ code {
   border: 1px solid black;
   font-size: 36px;
   text-align: center;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  /* caret-color: transparent; */
 }
 
 .check {
@@ -68,3 +71,8 @@ code {
 .grey {
   background-color: grey;
 }
+
+/* input {
+  color: transparent;
+  text-shadow: 0 0 0 black;
+} */

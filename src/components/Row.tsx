@@ -16,6 +16,7 @@ export const Row: React.FC<RowProps> = ({
   check,
   mainCall,
 }) => {
+  const [nextAutofocusCell, setNextAutofocusCell] = useState<number>(0);
   const cells: number[] = new Array(5).fill(null).map((_, idx) => idx);
   let counter: number = 0;
 
@@ -26,7 +27,14 @@ export const Row: React.FC<RowProps> = ({
     }
   };
 
+  const rowCallback1 = () => {
+    if (nextAutofocusCell < 4) {
+      setNextAutofocusCell((prev) => prev + 1);
+    }
+  };
+
   console.log('row done');
+  console.log('row: ', row, 'nextCell: ', nextAutofocusCell);
 
   return (
     <>
@@ -38,7 +46,9 @@ export const Row: React.FC<RowProps> = ({
           word={word}
           check={check}
           index={cell}
+          cellInFocus={nextAutofocusCell}
           cb={rowCallback}
+          cb1={rowCallback1}
         />
       ))}
     </>
