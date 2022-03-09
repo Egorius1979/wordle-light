@@ -16,12 +16,13 @@ code {
     monospace;
 }
 
-/* .flex {
+.flex {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
   align-items: center;
   justify-content: center;
-} */
+}
 
 .block {
   display: block;

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Cell } from './Cell';
 
 interface RowProps {
-  cells: number[];
   row: number;
   current: number;
   word: string;
@@ -11,13 +10,13 @@ interface RowProps {
 }
 
 export const Row: React.FC<RowProps> = ({
-  cells,
   row,
   current,
   word,
   check,
   mainCall,
 }) => {
+  const cells: number[] = new Array(5).fill(null).map((_, idx) => idx);
   let counter: number = 0;
 
   const rowCallback = (inPlace: boolean, index: number) => {
@@ -26,6 +25,8 @@ export const Row: React.FC<RowProps> = ({
       mainCall(counter);
     }
   };
+
+  console.log('row done');
 
   return (
     <>

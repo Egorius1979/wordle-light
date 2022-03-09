@@ -29,9 +29,7 @@ export const Cell: React.FC<CellProps> = ({
           ? 'yellow'
           : 'grey'
       );
-      // if (!index) {
       cb(word[index] === value, index);
-      // }
     }
   }, [check, row]);
 
@@ -40,6 +38,8 @@ export const Cell: React.FC<CellProps> = ({
       setValue(() => e.target.value);
     }
   };
+
+  console.log('cell done');
 
   return (
     <input

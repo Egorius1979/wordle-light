@@ -8,8 +8,9 @@ export const MainTable: React.FC = () => {
   const [isChecking, setIsChecking] = useState<boolean>(false);
   const [hasWon, setHasWon] = useState(false);
 
-  const rows = new Array(6).fill(null).map((_, idx) => idx + 1);
-  const cells = new Array(5).fill(null).map((_, idx) => idx);
+  const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
+
+  console.log('main done');
 
   const clickHandler = () => {
     setIsChecking(true);
@@ -26,11 +27,10 @@ export const MainTable: React.FC = () => {
   console.log(currentRow, isChecking);
 
   return (
-    <div className="field flex">
+    <div className="field">
       {rows.map((row) => (
         <Row
           key={row}
-          cells={cells}
           row={row}
           current={currentRow}
           word={word}
@@ -38,10 +38,12 @@ export const MainTable: React.FC = () => {
           mainCall={mainCallback}
         />
       ))}
-      <button className="check" onClick={clickHandler}>
-        ПРОВЕРИТЬ
-      </button>
-      {hasWon && <p>Вы отгадали</p>}
+      <div className="flex">
+        <button className="check" onClick={clickHandler}>
+          ПРОВЕРИТЬ
+        </button>
+        {hasWon && <p>Вы отгадали</p>}
+      </div>
     </div>
   );
 };
