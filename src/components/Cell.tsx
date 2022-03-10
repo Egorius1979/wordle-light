@@ -8,7 +8,8 @@ interface CellProps {
   index: number;
   cellInFocus: number;
   cb: (inPlace: boolean, index: number) => void;
-  cb1: () => void;
+  cb1: (value: boolean) => void;
+  deleted: boolean;
 }
 
 export const Cell: React.FC<CellProps> = ({
@@ -20,6 +21,7 @@ export const Cell: React.FC<CellProps> = ({
   cellInFocus,
   cb,
   cb1,
+  deleted,
 }) => {
   const [value, setValue] = useState<string>('');
   const [bgColor, setBgColor] = useState('');
@@ -36,23 +38,33 @@ export const Cell: React.FC<CellProps> = ({
       );
       cb(word[index] === value, index);
     }
-  }, [check, row, currentRow, word, index]);
+  }, [check, row, currentRow, word, index, value]);
 
   useEffect(() => {
-    if (value) {
-      cb1();
+    if (deleted && cellInFocus === index) {
+      setValue('');
     }
-  }, [value]);
-
-  useEffect(() => {
     if (cellInFocus === index || check) {
       return inputRef?.current?.focus();
     }
-  }, [cellInFocus, index, check]);
+  }, [cellInFocus, index, check, deleted]);
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < 2) {
       setValue(() => e.target.value);
+      cb1(true);
+    }
+  };
+
+  const deleteLetter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      return;
+    }
+    if (e.key === 'Backspace') {
+      if (index === 4 && value) {
+        setValue('');
+      } else cb1(false);
     }
   };
 
@@ -61,11 +73,12 @@ export const Cell: React.FC<CellProps> = ({
   return (
     <input
       type="text"
-      className={`cell ${bgColor}`}
+      className={`cell ${bgColor} ${value ? 'border' : ''}`}
       disabled={row !== currentRow}
       value={value}
       onChange={(e) => changeValue(e)}
       ref={inputRef}
+      onKeyDown={deleteLetter}
     />
   );
 };

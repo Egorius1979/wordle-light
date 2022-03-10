@@ -19,7 +19,6 @@ code {
 .flex {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   align-items: center;
   justify-content: center;
 }
@@ -41,9 +40,9 @@ code {
   border: 1px solid black;
   font-size: 36px;
   text-align: center;
-  color: transparent;
-  text-shadow: 0 0 0 black;
-  /* caret-color: transparent; */
+  /* color: transparent;
+  text-shadow: 0 0 0 black; */
+  outline: none;
 }
 
 .check {
@@ -76,3 +75,7 @@ code {
   color: transparent;
   text-shadow: 0 0 0 black;
 } */
+
+.border {
+  border: 2px solid black;
+}

@@ -6,23 +6,29 @@ const word = 'кадет';
 export const MainTable: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<number>(1);
   const [isChecking, setIsChecking] = useState<boolean>(false);
-  const [hasWon, setHasWon] = useState(false);
+  const [result, setResult] = useState<string>('');
 
   const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
 
   console.log('main done');
 
   const clickHandler = () => {
-    setIsChecking(true);
+    if (currentRow <= 6) {
+      setIsChecking(true);
+    }
   };
 
   const mainCallback = (count: number) => {
     if (count === 5) {
-      setHasWon(true);
+      setResult('Всё верно, поздравляем!');
       return;
     }
-    setIsChecking(false);
-    setCurrentRow((prev) => prev + 1);
+    if (currentRow < 6) {
+      setIsChecking(false);
+      setCurrentRow((prev) => prev + 1);
+      return;
+    }
+    setResult('Увы, неверно, попробуйте снова!');
   };
   console.log(currentRow, isChecking);
 
@@ -42,7 +48,7 @@ export const MainTable: React.FC = () => {
         <button className="check" onClick={clickHandler}>
           ПРОВЕРИТЬ
         </button>
-        {hasWon && <p>Вы отгадали</p>}
+        <p>{result}</p>
       </div>
     </div>
   );

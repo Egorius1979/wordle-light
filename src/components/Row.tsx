@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Cell } from './Cell';
 
 interface RowProps {
@@ -17,8 +17,15 @@ export const Row: React.FC<RowProps> = ({
   mainCall,
 }) => {
   const [nextAutofocusCell, setNextAutofocusCell] = useState<number>(0);
+  const [deleted, setDeleted] = useState<boolean>(false);
   const cells: number[] = new Array(5).fill(null).map((_, idx) => idx);
   let counter: number = 0;
+
+  useEffect(() => {
+    if (check) {
+      setDeleted(false);
+    }
+  }, [check]);
 
   const rowCallback = (inPlace: boolean, index: number) => {
     counter = inPlace ? counter + 1 : counter;
@@ -27,14 +34,19 @@ export const Row: React.FC<RowProps> = ({
     }
   };
 
-  const rowCallback1 = () => {
-    if (nextAutofocusCell < 4) {
+  const rowCallback1 = (valueWasSet: boolean) => {
+    if (!valueWasSet && nextAutofocusCell > 0) {
+      setNextAutofocusCell((prev) => prev - 1);
+      setDeleted(true);
+      return;
+    }
+    if (valueWasSet && nextAutofocusCell < 4) {
       setNextAutofocusCell((prev) => prev + 1);
     }
   };
 
-  console.log('row done');
-  console.log('row: ', row, 'nextCell: ', nextAutofocusCell);
+  // console.log('row done');
+  // console.log('row: ', row, 'nextCell: ', nextAutofocusCell);
 
   return (
     <>
@@ -49,6 +61,7 @@ export const Row: React.FC<RowProps> = ({
           cellInFocus={nextAutofocusCell}
           cb={rowCallback}
           cb1={rowCallback1}
+          deleted={deleted}
         />
       ))}
     </>
