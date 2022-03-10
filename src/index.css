@@ -40,23 +40,23 @@ code {
   border: 1px solid black;
   font-size: 36px;
   text-align: center;
-  /* color: transparent;
-  text-shadow: 0 0 0 black; */
+  color: transparent;
+  text-shadow: 0 0 0 black;
   outline: none;
 }
 
-.check {
+.btn {
   padding: 5px 10px;
-  background: darkseagreen;
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   font-size: large;
   text-align: center;
   margin: 20px 0;
+  color: white;
 }
 .check:active {
-  background: green;
+  opacity: 0.8;
 }
 
 .yellow {
@@ -71,10 +71,13 @@ code {
   background-color: grey;
 }
 
-/* input {
-  color: transparent;
-  text-shadow: 0 0 0 black;
-} */
+.check {
+  background: DarkSlateGrey;
+}
+
+.new-game {
+  background: Crimson;
+}
 
 .border {
   border: 2px solid black;

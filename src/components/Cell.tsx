@@ -68,7 +68,7 @@ export const Cell: React.FC<CellProps> = ({
     }
   };
 
-  console.log('cell done');
+  console.log('cell done', index, cellInFocus);
 
   return (
     <input

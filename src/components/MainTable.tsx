@@ -18,6 +18,10 @@ export const MainTable: React.FC = () => {
     }
   };
 
+  const newGame = () => {
+    window.location.reload();
+  };
+
   const mainCallback = (count: number) => {
     if (count === 5) {
       setResult('Всё верно, поздравляем!');
@@ -28,7 +32,7 @@ export const MainTable: React.FC = () => {
       setCurrentRow((prev) => prev + 1);
       return;
     }
-    setResult('Увы, неверно, попробуйте снова!');
+    setResult('Увы, попробуйте ещё раз!');
   };
   console.log(currentRow, isChecking);
 
@@ -45,9 +49,16 @@ export const MainTable: React.FC = () => {
         />
       ))}
       <div className="flex">
-        <button className="check" onClick={clickHandler}>
-          ПРОВЕРИТЬ
-        </button>
+        {!result && (
+          <button className="btn check" onClick={clickHandler}>
+            ПРОВЕРИТЬ
+          </button>
+        )}
+        {result && (
+          <button className="btn new-game" onClick={newGame}>
+            ИГРАТЬ
+          </button>
+        )}
         <p>{result}</p>
       </div>
     </div>

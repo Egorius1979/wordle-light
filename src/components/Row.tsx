@@ -21,12 +21,6 @@ export const Row: React.FC<RowProps> = ({
   const cells: number[] = new Array(5).fill(null).map((_, idx) => idx);
   let counter: number = 0;
 
-  useEffect(() => {
-    if (check) {
-      setDeleted(false);
-    }
-  }, [check]);
-
   const rowCallback = (inPlace: boolean, index: number) => {
     counter = inPlace ? counter + 1 : counter;
     if (index === 4) {
@@ -42,11 +36,11 @@ export const Row: React.FC<RowProps> = ({
     }
     if (valueWasSet && nextAutofocusCell < 4) {
       setNextAutofocusCell((prev) => prev + 1);
+      if (deleted) {
+        setDeleted(false);
+      }
     }
   };
-
-  // console.log('row done');
-  // console.log('row: ', row, 'nextCell: ', nextAutofocusCell);
 
   return (
     <>
