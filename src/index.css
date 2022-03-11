@@ -55,7 +55,7 @@ code {
   margin: 20px 0;
   color: white;
 }
-.check:active {
+.btn:active {
   opacity: 0.8;
 }
 

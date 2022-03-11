@@ -1,3 +1,9 @@
+# Моя light версия Wordle
+
+Основной функционал готов, немного не доделал логику проверки.
+Ввод, исправление слова полностью доступны с клавиатуры, проверка пока нет.
+Первое приложение на связке React + TypeScript. Решил попробовать обойтись без Redux, хотя с ним было бы местами гораздо проще, поэтому код несколько запутан и витиеват.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

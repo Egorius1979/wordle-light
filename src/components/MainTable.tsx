@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Row } from './Row';
 
-const word = 'кадет';
-
 export const MainTable: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<number>(1);
   const [isChecking, setIsChecking] = useState<boolean>(false);
   const [result, setResult] = useState<string>('');
 
+  const word = 'кадет';
   const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
-
-  console.log('main done');
 
   const clickHandler = () => {
     if (currentRow <= 6) {
@@ -24,7 +21,7 @@ export const MainTable: React.FC = () => {
 
   const mainCallback = (count: number) => {
     if (count === 5) {
-      setResult('Всё верно, поздравляем!');
+      setResult('Верно, поздравляю!');
       return;
     }
     if (currentRow < 6) {
@@ -34,7 +31,6 @@ export const MainTable: React.FC = () => {
     }
     setResult('Увы, попробуйте ещё раз!');
   };
-  console.log(currentRow, isChecking);
 
   return (
     <div className="field">
