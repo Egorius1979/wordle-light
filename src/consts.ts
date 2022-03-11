@@ -1,5 +1,13 @@
-// export const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
-// export const cells: number[] = new Array(5).fill(null).map((_, idx) => idx);
+export const dictionary = [
+  'кадет',
+  'декан',
+  'молот',
+  'доска',
+  'масло',
+  'точка',
+  'место',
+  'фронт',
+];
 export const klava: string[] = [
   'й',
   'ц',

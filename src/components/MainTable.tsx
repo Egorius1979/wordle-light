@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Row } from './Row';
+import { dictionary } from '../consts';
 
 export const MainTable: React.FC = () => {
+  const [word, setWord] = useState<string>(
+    dictionary[Math.floor(Math.random() * dictionary.length)]
+  );
   const [currentRow, setCurrentRow] = useState<number>(1);
   const [isChecking, setIsChecking] = useState<boolean>(false);
   const [result, setResult] = useState<string>('');
 
-  const word = 'кадет';
   const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
+  console.log(word);
 
   const clickHandler = () => {
     if (currentRow <= 6) {
