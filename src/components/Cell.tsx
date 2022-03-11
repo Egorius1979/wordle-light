@@ -32,8 +32,10 @@ export const Cell: React.FC<CellProps> = ({
       setBgColor(
         word[index] === value
           ? 'green'
-          : word.includes(value)
+          : word.includes(value) && value
           ? 'yellow'
+          : !value
+          ? 'red'
           : 'grey'
       );
       cb(word[index] === value, index);

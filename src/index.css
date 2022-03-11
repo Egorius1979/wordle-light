@@ -60,11 +60,15 @@ code {
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #ffd700;
 }
 
 .green {
-  background-color: green;
+  background-color: #7fff00;
+}
+
+.red {
+  background: red;
 }
 
 .grey {
