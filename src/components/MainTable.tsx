@@ -33,7 +33,7 @@ export const MainTable: React.FC = () => {
   };
 
   return (
-    <div className="field">
+    <div className="field" onMouseDown={(e) => e.preventDefault()}>
       {rows.map((row) => (
         <Row
           key={row}

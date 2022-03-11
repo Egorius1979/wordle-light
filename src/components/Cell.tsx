@@ -81,6 +81,7 @@ export const Cell: React.FC<CellProps> = ({
       onChange={(e) => changeValue(e)}
       ref={inputRef}
       onKeyDown={deleteLetter}
+      // onMouseDown={(e) => e.preventDefault()}
     />
   );
 };
