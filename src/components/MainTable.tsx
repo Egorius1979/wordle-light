@@ -69,7 +69,7 @@ export const MainTable: React.FC = () => {
           <p>
             слово:{' '}
             <i className="word">
-              <b>{word}</b>
+              <strong>{word}</strong>
             </i>
           </p>
         )}
