@@ -7,8 +7,8 @@ interface CellProps {
   check: boolean;
   index: number;
   cellInFocus: number;
-  cb: (inPlace: boolean, index: number) => void;
-  cb1: (value: boolean) => void;
+  rowCb: (inPlace: boolean, index: number) => void;
+  rowCb1: (value: boolean) => void;
   deleted: boolean;
 }
 
@@ -19,8 +19,8 @@ export const Cell: React.FC<CellProps> = ({
   check,
   index,
   cellInFocus,
-  cb,
-  cb1,
+  rowCb,
+  rowCb1,
   deleted,
 }) => {
   const [value, setValue] = useState<string>('');
@@ -38,9 +38,9 @@ export const Cell: React.FC<CellProps> = ({
           ? 'red'
           : 'grey'
       );
-      cb(word[index] === value, index);
+      rowCb(word[index] === value, index);
     }
-  }, [check, row, currentRow, word, index, value]);
+  }, [check, row, currentRow, word, index, value, rowCb]);
 
   useEffect(() => {
     if (deleted && cellInFocus === index) {
@@ -54,7 +54,7 @@ export const Cell: React.FC<CellProps> = ({
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < 2) {
       setValue(() => e.target.value);
-      cb1(true);
+      rowCb1(true);
     }
   };
 
@@ -66,11 +66,9 @@ export const Cell: React.FC<CellProps> = ({
     if (e.key === 'Backspace') {
       if (index === 4 && value) {
         setValue('');
-      } else cb1(false);
+      } else rowCb1(false);
     }
   };
-
-  console.log('cell done', index, cellInFocus);
 
   return (
     <input
@@ -81,7 +79,6 @@ export const Cell: React.FC<CellProps> = ({
       onChange={(e) => changeValue(e)}
       ref={inputRef}
       onKeyDown={deleteLetter}
-      // onMouseDown={(e) => e.preventDefault()}
     />
   );
 };

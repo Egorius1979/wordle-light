@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Cell } from './Cell';
 
 interface RowProps {
@@ -53,8 +53,8 @@ export const Row: React.FC<RowProps> = ({
           check={check}
           index={cell}
           cellInFocus={nextAutofocusCell}
-          cb={rowCallback}
-          cb1={rowCallback1}
+          rowCb={rowCallback}
+          rowCb1={rowCallback1}
           deleted={deleted}
         />
       ))}

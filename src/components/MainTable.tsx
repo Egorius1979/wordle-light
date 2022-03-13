@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Row } from './Row';
 import { dictionary } from '../consts';
 
@@ -11,9 +11,8 @@ export const MainTable: React.FC = () => {
   const [result, setResult] = useState<string>('');
 
   const rows: number[] = new Array(6).fill(null).map((_, idx) => idx + 1);
-  console.log(word);
 
-  const clickHandler = () => {
+  const checkHandler = () => {
     if (currentRow <= 6) {
       setIsChecking(true);
     }
@@ -37,7 +36,14 @@ export const MainTable: React.FC = () => {
   };
 
   return (
-    <div className="field" onMouseDown={(e) => e.preventDefault()}>
+    <div
+      className="field"
+      onMouseDown={(e) => e.preventDefault()}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          checkHandler();
+        }
+      }}>
       {rows.map((row) => (
         <Row
           key={row}
@@ -50,7 +56,7 @@ export const MainTable: React.FC = () => {
       ))}
       <div className="flex">
         {!result && (
-          <button className="btn check" onClick={clickHandler}>
+          <button className="btn check" onClick={checkHandler}>
             ПРОВЕРИТЬ
           </button>
         )}
@@ -58,6 +64,14 @@ export const MainTable: React.FC = () => {
           <button className="btn new-game" onClick={newGame}>
             ИГРАТЬ
           </button>
+        )}
+        {result && !result.includes('Верно') && (
+          <p>
+            слово:{' '}
+            <i className="word">
+              <b>{word}</b>
+            </i>
+          </p>
         )}
         <p>{result}</p>
       </div>

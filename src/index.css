@@ -86,3 +86,9 @@ code {
 .border {
   border: 2px solid black;
 }
+
+.word {
+  display: inline-block;
+  color: darkorange;
+  margin-bottom: 1rem;
+}
